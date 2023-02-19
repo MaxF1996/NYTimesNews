@@ -1,0 +1,1 @@
+{"mappings":"gfAAA,IAAAA,EAAAC,EAAA,SAGa,IAAI,E,WAAAC,UACjB,EAAAF,EAAAE,U","sources":["src/index.js"],"sourcesContent":["import jsScriptHeader from './js/jsScriptHeader';\nimport NewsApiServes from './rest-api';\n\nconst news = new NewsApiServes();\njsScriptHeader();\n"],"names":["$3EQkx","parcelRequire","default"],"version":3,"file":"index.e655aab7.js.map"}
