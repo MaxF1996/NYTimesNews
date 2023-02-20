@@ -16,7 +16,7 @@ export function createCard({
         <span class="readable"
         >Already read
         <svg class="icon-done" width="18" height="18"><use
-        href="/sprite.f14d31f7.svg#arrow-done"></use></svg>
+        href="./images/sprite.svg#arrow-done"></use></svg>
           </span>
           <img src="https://www.nytimes.com/${multimedia[0].url}" loading="lazy" alt="${snippet
   }" class="news-img" />
@@ -24,8 +24,8 @@ export function createCard({
           <button type="button" class="add-news-favorite">
             <p class="favorite-btn-text">Add to favorite</p>
             <svg class="favorite-icon" width="16" height="16">
-             <use href="/sprite.f14d31f7.svg#heart-empty" class="icon-empty-heart"></use>  
-             <use href="/sprite.f14d31f7.svg#heart-fill" class="icon-heart"></use>  
+             <use href="./images/sprite.svg#heart-empty" class="icon-empty-heart"></use>  
+             <use href="./images/sprite.svg#heart-fill" class="icon-heart"></use>  
                 </svg> 
           </button>
         </div>
@@ -71,7 +71,7 @@ export function createCardPop({
         <span class="readable"
         >Already read
         <svg class="icon-done" width="18" height="18"><use
-        href="/sprite.f14d31f7.svg#arrow-done"></use></svg>
+        href="./images/sprite.svg#arrow-done"></use></svg>
           </span>
           <img src="${
             !media[0]
@@ -82,8 +82,8 @@ export function createCardPop({
           <button type="button" class="add-news-favorite">
             <p class="favorite-btn-text">Add to favorite</p>
             <svg class="favorite-icon" width="16" height="16">
-             <use href="/sprite.f14d31f7.svg#heart-empty" class="icon-empty-heart"></use>  
-             <use href="/sprite.f14d31f7.svg#heart-fill" class="icon-heart"></use>  
+             <use href="./images/sprite.svg#heart-empty" class="icon-empty-heart"></use>  
+             <use href="./images/sprite.svg#heart-fill" class="icon-heart"></use>  
                 </svg> 
           </button>
         </div>

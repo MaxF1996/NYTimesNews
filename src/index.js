@@ -9,11 +9,7 @@ jsScriptHeader();
 renderPopularNews();
 getWeatherWidget();
 onFavoriteBtnClick()
-  if(getWeatherWidget){
-console.log('true')
-console.log(getWeatherWidget)
 
-  }
 
 
 
