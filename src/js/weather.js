@@ -170,4 +170,5 @@ async function markupWeatherCardDefault() {
   refs.weatherLinkSite.setAttribute('href', `https://www.wunderground.com/forecast/ua/Kyiv`);
 }
 
+// export { getWeatherWidget };
 export { getWeatherWidget };

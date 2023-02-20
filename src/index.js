@@ -6,10 +6,14 @@ import { onFavoriteBtnClick }  from "./js/onFavoriteBtn";
 import renderPopularNews from './js/renderPopularNews';
 const news = new NewsApiServes();
 jsScriptHeader();
-getWeatherWidget();
 renderPopularNews();
+getWeatherWidget();
 onFavoriteBtnClick()
+  if(getWeatherWidget){
+console.log('true')
+console.log(getWeatherWidget)
 
+  }
 
 
 
