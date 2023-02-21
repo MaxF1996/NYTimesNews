@@ -6,6 +6,7 @@ import { updateMarkup } from './js/markupUtils';
 import { createCard } from './js/cardMarkup';
 import { getWeatherWidget } from './js/weather';
 import NewsApiServes from './js/rest-api';
+import {onFavoriteBtnClick} from './js/onFavoriteBtn';
 
 const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
