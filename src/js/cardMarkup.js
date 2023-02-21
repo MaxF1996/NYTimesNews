@@ -64,7 +64,7 @@ export function createCardPop({
   url,
 }) {
   return `
-        <li class="news-item is-read">
+        <li class="news-item">
         <div class="overlay"></div>
         <div class="img-thumb">
         <span class="readable"

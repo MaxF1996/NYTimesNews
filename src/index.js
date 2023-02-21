@@ -15,7 +15,7 @@ const news = new NewsApiServes();
 
 jsScriptHeader();
 popularNews();
-
+onFavoriteBtnClick();
 if (document.title !== 'NYTimes News: Read By Yourself') {
   getCategoryList();
 }
