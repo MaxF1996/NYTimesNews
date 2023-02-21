@@ -5,18 +5,20 @@ import { createCardPop } from './js/cardMarkup';
 import { updateMarkup } from './js/markupUtils';
 import { createCard } from './js/cardMarkup';
 import { getWeatherWidget } from './js/weather';
+
+import { onFavoriteBtnClick } from './js/onFavoriteBtn';
+// import footerJs from './js/footer';
+
 import NewsApiServes from './js/rest-api';
 
-const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
 
 jsScriptHeader();
 popularNews();
-onFavoriteBtnClick()
+getCategoryList();
 
-if (document.title !== 'NYTimes News: Read By Yourself') {
-  getCategoryList();
-}
+// getWeatherWidget();
+
 console.log(news.getCardOrder());
 
 export default function renderCards(articles, identifier) {
@@ -38,3 +40,6 @@ export default function renderCards(articles, identifier) {
     .join('');
   updateMarkup(markup, newsBoxEl);
 }
+
+onFavoriteBtnClick();
+// footerJs();
