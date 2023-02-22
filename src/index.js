@@ -6,17 +6,16 @@ import popularNews from './js/renderPopularNews';
 import { createCardPop } from './js/cardMarkup';
 import { updateMarkup } from './js/markupUtils';
 import { createCard } from './js/cardMarkup';
-import jsCalendar from './js/calendar';
-
 import NewsApiServes from './js/rest-api';
 import footerJs from './js/footer';
+import { renderCalendar } from './js/calendar';
 
 const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
 
+news.currtentDate();
 jsScriptHeader();
 popularNews();
-
 footerJs();
 
 if (document.title !== 'NYTimes News: Read By Yourself') {

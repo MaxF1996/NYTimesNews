@@ -14,7 +14,6 @@ export default async function () {
     const articles = response.data.results;
     if (articles.length === 0) throw new Error('No data');
     renderCards(articles, 'populate');
-    //  addEvtListOnReadMore(articles);
   } catch {
     onError();
   }

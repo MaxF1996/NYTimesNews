@@ -82,6 +82,10 @@ export default class NewsApiServes {
     return response;
   }
 
+  currtentDate() {
+    this.setDate = new Date().toISOString().slice(0, 10);
+  }
+
   sizeScreenCompute() {
     if (window.matchMedia('(max-width: 767px)').matches) {
       this.limit = 4;
@@ -93,21 +97,6 @@ export default class NewsApiServes {
       this.limit = 8;
       this.cardOrder = 2;
     }
-  }
-
-  incrementPagination() {
-    this.offset += this.limit;
-  }
-
-  decrementPagination() {
-    this.offset -= this.limit;
-  }
-
-  resetOffset() {
-    this.offset = 0;
-  }
-  offset() {
-    return this.offset;
   }
 
   limit() {
