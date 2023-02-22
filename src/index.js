@@ -15,7 +15,11 @@ const news = new NewsApiServes();
 
 news.currtentDate();
 jsScriptHeader();
-popularNews();
+if (document.title === 'NYTimes News') {
+  jsCalendar();
+  popularNews();
+}
+
 footerJs();
 
 if (document.title !== 'NYTimes News: Read By Yourself') {
