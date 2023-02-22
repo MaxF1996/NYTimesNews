@@ -18,8 +18,13 @@ export function createCard({
         <svg class="icon-done" width="18" height="18"><use
         href="/sprite.f14d31f7.svg#arrow-done"></use></svg>
           </span>
-          <img 
-            loading="lazy" alt="${snippet}" class="news-img" />
+          <img src="${
+            !multimedia[0]
+              ? 'https://raw.githubusercontent.com/MaxF1996/NYTimesNews/main/src/images/The_New_York_Times.jpg'
+              : 'https://www.nytimes.com/' + multimedia[0].url
+          }" loading="lazy" alt="${
+    !multimedia[0].url ? 'NYTimes' : snippet
+  }" class="news-img" />
           <p class="news-chip">${section_name}</p>
           <button type="button" class="add-news-favorite">
             <p class="favorite-btn-text">Add to favorite</p>
@@ -76,6 +81,61 @@ export function createCardPop({
     !media[0] ? 'NYTimes' : media[0].caption
   }" class="news-img" />
           <p class="news-chip">${section || subsection}</p>
+          <button type="button" class="add-news-favorite">
+            <p class="favorite-btn-text">Add to favorite</p>
+            <svg class="favorite-icon" width="16" height="16">
+             <use href="/sprite.f14d31f7.svg#heart-empty" class="icon-empty-heart"></use>  
+             <use href="/sprite.f14d31f7.svg#heart-fill" class="icon-heart"></use>  
+                </svg> 
+          </button>
+        </div>
+        <div class="news-info">
+          <h2 class="news-title disable-scroll">
+            ${cutTitle(title)}
+          </h2>
+          <p class="news-desk">
+          ${cutText(abstract)}
+          </p>
+          <div class="adding">
+            <p class="news-date">${formatDate(published_date)}</p>
+            <a
+              href=${url}
+              class="news-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Read more</a
+            >
+          </div>
+        </div>
+      </li> `;
+}
+
+export function categoryCard({
+  section,
+  url,
+  abstract,
+  title,
+  published_date,
+  multimedia,
+  byline,
+}) {
+  return `
+        <li class="news-item">
+        <div class="overlay"></div>
+        <div class="img-thumb">
+        <span class="readable"
+        >Already read
+        <svg class="icon-done" width="18" height="18"><use
+        href="/sprite.f14d31f7.svg#arrow-done"></use></svg>
+          </span>
+          <img src="${
+            multimedia[2].url
+            // ? 'https://raw.githubusercontent.com/MaxF1996/NYTimesNews/main/src/images/The_New_York_Times.jpg'
+            // : 'https://www.nytimes.com/' + multimedia[0].url
+          }" loading="lazy" alt="${
+    !multimedia[0].url ? 'NYTimes' : byline
+  }" class="news-img" />
+          <p class="news-chip">${section}</p>
           <button type="button" class="add-news-favorite">
             <p class="favorite-btn-text">Add to favorite</p>
             <svg class="favorite-icon" width="16" height="16">

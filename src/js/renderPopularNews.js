@@ -20,8 +20,10 @@ export default async function () {
   } catch {
     onError();
   }
+
   newsCardsFavChecker();
 }
+
 export function onError() {
   // newsBoxEl.textContent = 'Not found any articles';
   const notFind = document.querySelector('.not-find');

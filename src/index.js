@@ -4,6 +4,7 @@ import weatherTemplate from './template/weatherTemplate';
 import { getWeatherWidget } from './js/weather';
 import popularNews from './js/renderPopularNews';
 import { createCardPop } from './js/cardMarkup';
+import { categoryCard } from './js/cardMarkup';
 import { updateMarkup } from './js/markupUtils';
 import { createCard } from './js/cardMarkup';
 import NewsApiServes from './js/rest-api';
@@ -23,16 +24,19 @@ if (document.title === 'NYTimes News') {
 footerJs();
 
 if (document.title !== 'NYTimes News: Read By Yourself') {
-  if (window.location.href == 'http://localhost:1234/index.html') {
-    getCategoryList();
-  }
+  getCategoryList();
 }
 
 export default function renderCards(articles, identifier) {
   news.sizeScreenCompute();
   const markup = articles
     .map((article, idx) => {
-      if (identifier === 'search') {
+      if (identifier === 'categories') {
+        if (idx !== news.getCardOrder()) {
+          return categoryCard(article);
+        }
+        return weatherTemplate() + categoryCard(article);
+      } else if (identifier === 'search') {
         if (idx !== news.getCardOrder()) {
           return createCard(article);
         }

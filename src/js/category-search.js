@@ -1,4 +1,5 @@
 import NewsApiServes from './rest-api';
+import renderCards from '../index';
 
 const news = new NewsApiServes();
 
@@ -43,7 +44,7 @@ function hendleOnBtn(event) {
 }
 
 async function hendleRequest(categories) {
-  const string = categories.toLowerCase();
+  const string = categories.toLowerCase().trim();
   const encodeURI = encodeURIComponent(string);
 
   news.category = encodeURI;
@@ -51,6 +52,7 @@ async function hendleRequest(categories) {
     const response = await news.searchNewsOnClick();
     const checkedResponse = await responseСheck(response);
     console.log(checkedResponse);
+    renderCards(checkedResponse, 'categories');
   } catch (error) {
     console.log(error);
   }
@@ -60,7 +62,7 @@ function responseСheck(response) {
   if (response.data.results == false) {
     throw new Error();
   }
-  return response;
+  return response.data.results;
 }
 
 export { getCategoryList };

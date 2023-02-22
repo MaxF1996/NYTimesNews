@@ -1,6 +1,7 @@
 import NewsApiServes from './rest-api';
 import { onError } from './renderPopularNews';
 import renderCards from '../index';
+import { addEvtListOnReadMore } from './onReadLink';
 
 const news = new NewsApiServes();
 
