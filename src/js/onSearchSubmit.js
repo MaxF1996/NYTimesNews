@@ -1,16 +1,15 @@
 import NewsApiServes from './rest-api';
 import { onError } from './renderPopularNews';
 import renderCards from '../index';
+import { addEvtListOnReadMore } from './onReadLink';
 
 const news = new NewsApiServes();
 
 export default async function onSearchSubmit(e) {
   e.preventDefault();
   const form = e.currentTarget;
-  news.currtentDate();
-  // const storage = localStorage.getItem('selectedDateKey');
-  // console.log(storage);
-  // news.setDate = storage;
+  const storage = localStorage.getItem('selectedDateKey');
+  news.setDate = quotesReplace(storage);
   news.query = e.target.elements.word.value;
   try {
     const response = await news.searchNewsByInputAndDate();
@@ -20,15 +19,12 @@ export default async function onSearchSubmit(e) {
       throw new Error('No data');
     }
     renderCards(articles, 'search');
-  } catch (error) {
-    console.log(error);
+    addEvtListOnReadMore(articles);
+  } catch {
     onError();
   }
 }
 
-function checkLockalStorage() {
-  const storage = localStorage.getItem('selectedDateKey');
-
-  if (storage === false) {
-  }
+function quotesReplace(quote) {
+  return quote.replace('"', '').replace('"', '');
 }

@@ -81,11 +81,6 @@ export default class NewsApiServes {
     return response;
   }
 
-  currtentDate() {
-    const string = new Date().toISOString().slice(0, 10);
-    this.setDate = string.replace('-', '').replace('-', '');
-  }
-
   sizeScreenCompute() {
     if (window.matchMedia('(max-width: 767px)').matches) {
       this.limit = 4;
@@ -125,6 +120,10 @@ export default class NewsApiServes {
 
   setDate(newDate) {
     this.setDate = newDate;
+  }
+
+  resetDate() {
+    this.setDate = '';
   }
 
   get category() {
