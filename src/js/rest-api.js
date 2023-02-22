@@ -9,7 +9,6 @@ export default class NewsApiServes {
     this.searchQuery = '';
     this.categoryQuery = '';
     this.setDate = '';
-    this.offset = 0;
     this.limit = 0;
     this.page = 0;
     this.cardOrder = 0;
@@ -83,7 +82,8 @@ export default class NewsApiServes {
   }
 
   currtentDate() {
-    this.setDate = new Date().toISOString().slice(0, 10);
+    const string = new Date().toISOString().slice(0, 10);
+    this.setDate = string.replace('-', '').replace('-', '');
   }
 
   sizeScreenCompute() {
@@ -123,11 +123,7 @@ export default class NewsApiServes {
     return this.cardOrder;
   }
 
-  get date() {
-    return this.setDate;
-  }
-
-  set date(newDate) {
+  setDate(newDate) {
     this.setDate = newDate;
   }
 

@@ -8,7 +8,7 @@ import { updateMarkup } from './js/markupUtils';
 import { createCard } from './js/cardMarkup';
 import NewsApiServes from './js/rest-api';
 import footerJs from './js/footer';
-import { renderCalendar } from './js/calendar';
+import jsCalendar from './js/calendar';
 
 const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
