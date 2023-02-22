@@ -1,12 +1,12 @@
 import NewsApiServes from "./rest-api"
 import { createCardPop } from './cardMarkup';
+import { createCard } from './cardMarkup';
 import { updateMarkup } from './markupUtils';
 import { getWeatherWidget } from './weather'
-
+const news = new NewsApiServes();
 
 
 export async function pagiantePopularNews() {
-    const news = new NewsApiServes();
     const response = await news.requestPopularNews();
     const articles = response.data.results;
     let curentPage = 1;
