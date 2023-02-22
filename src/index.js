@@ -40,5 +40,8 @@ export default function renderCards(articles, identifier) {
       }
     })
     .join('');
-  updateMarkup(markup, newsBoxEl);
+    updateMarkup(markup, newsBoxEl);
+  
 }
+
+

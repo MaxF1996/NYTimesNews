@@ -3,6 +3,7 @@ import NewsApiServes from './rest-api';
 const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
 import { addEvtListOnReadMore } from './onReadLink';
+import {pagiantePopularNews} from './pagination'
 
 export default async function () {
   if (document.title !== 'NYTimes News') {
@@ -12,9 +13,11 @@ export default async function () {
   try {
     const response = await news.requestPopularNews();
     const articles = response.data.results;
+    // console.log(articles);
     if (articles.length === 0) throw new Error('No data');
-    renderCards(articles, 'populate');
-	 addEvtListOnReadMore(articles);
+    // renderCards(articles, 'populate');
+    // pagiantePopularNews(  )
+	  addEvtListOnReadMore(articles);
   } catch {
     onError();
   }
