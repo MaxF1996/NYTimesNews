@@ -9,6 +9,7 @@ import { createCard } from './js/cardMarkup';
 import NewsApiServes from './js/rest-api';
 import footerJs from './js/footer';
 import jsCalendar from './js/calendar';
+import { addEvtListOnReadMore } from './js/onReadLink';
 
 const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
@@ -22,7 +23,9 @@ if (document.title === 'NYTimes News') {
 footerJs();
 
 if (document.title !== 'NYTimes News: Read By Yourself') {
-  getCategoryList();
+  if (window.location.href == 'http://localhost:1234/index.html') {
+    getCategoryList();
+  }
 }
 
 export default function renderCards(articles, identifier) {
@@ -44,5 +47,6 @@ export default function renderCards(articles, identifier) {
     .join('');
 
   updateMarkup(markup, newsBoxEl);
+  addEvtListOnReadMore(articles);
   getWeatherWidget();
 }

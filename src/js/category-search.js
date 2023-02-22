@@ -2,9 +2,7 @@ import NewsApiServes from './rest-api';
 
 const news = new NewsApiServes();
 
-const categoriesOthers = document.querySelector('.dropdown__others');
-const categoriesDropdown = document.querySelector('.dropdown__categories');
-const categoriesFilterList = document.querySelector('.filter__list');
+const categoriesList = document.querySelector('.filter-section__container');
 const categoriesDropdownList = document.querySelector(
   '.categories-dropdown-list-js'
 );
@@ -17,7 +15,7 @@ async function getCategoryList() {
     .map((arr, index) => {
       if (index > 5) {
         return `<li class="dropdown__item">
-            <button class="dropdown__category-btn">${arr.display_name}</button>
+            <button class="dropdown__category-btn category__btn">${arr.display_name}</button>
           </li>`;
       }
     })
@@ -27,16 +25,15 @@ async function getCategoryList() {
   const markupCategories = response.data.results
     .map(
       arr => `<li class="dropdown__item">
-                            <button class="dropdown__category-btn ">${arr.display_name}</button>
+                            <button class="dropdown__category-btn category__btn">${arr.display_name}</button>
                         </li>`
     )
     .join('');
   categoriesDropdownList.innerHTML = markupCategories;
 }
 
-categoriesDropdown.addEventListener('click', hendleOnBtn);
-categoriesFilterList.addEventListener('click', hendleOnBtn);
-categoriesOthers.addEventListener('click', hendleOnBtn);
+categoriesList.addEventListener('click', hendleOnBtn);
+
 function hendleOnBtn(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;

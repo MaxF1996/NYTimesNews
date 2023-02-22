@@ -12,16 +12,16 @@ export default async function () {
   try {
     const response = await news.requestPopularNews();
     const articles = response.data.results;
-    if (response.data.results == false) {
-      throw new Error('No data');
-    }
+    if (articles.length === 0) throw new Error('No data');
     renderCards(articles, 'populate');
-    // addEvtListOnReadMore(articles);
+     addEvtListOnReadMore(articles);
   } catch {
     onError();
   }
+
   newsCardsFavChecker();
 }
+
 export function onError() {
   // newsBoxEl.textContent = 'Not found any articles';
   const notFind = document.querySelector('.not-find');

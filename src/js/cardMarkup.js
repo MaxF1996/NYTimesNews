@@ -18,9 +18,8 @@ export function createCard({
         <svg class="icon-done" width="18" height="18"><use
         href="/sprite.f14d31f7.svg#arrow-done"></use></svg>
           </span>
-          <img src="https://www.nytimes.com/${
-            multimedia[0].url
-          }" loading="lazy" alt="${snippet}" class="news-img" />
+          <img 
+            loading="lazy" alt="${snippet}" class="news-img" />
           <p class="news-chip">${section_name}</p>
           <button type="button" class="add-news-favorite">
             <p class="favorite-btn-text">Add to favorite</p>
