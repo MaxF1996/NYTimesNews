@@ -7,6 +7,8 @@ import { createCardPop } from './js/cardMarkup';
 import { categoryCard } from './js/cardMarkup';
 import { updateMarkup } from './js/markupUtils';
 import { createCard } from './js/cardMarkup';
+import { readLinksStyling } from './js/readLinksStyling';
+
 import NewsApiServes from './js/rest-api';
 import footerJs from './js/footer';
 import jsCalendar from './js/calendar';
@@ -53,4 +55,7 @@ export default function renderCards(articles, identifier) {
   updateMarkup(markup, newsBoxEl);
   addEvtListOnReadMore(articles);
   getWeatherWidget();
+  if (document.title === 'NYTimes News') {
+    readLinksStyling();
+  }
 }
