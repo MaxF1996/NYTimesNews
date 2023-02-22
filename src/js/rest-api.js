@@ -68,7 +68,7 @@ export default class NewsApiServes {
 
   async searchNewsOnClick() {
     const response = await axios.get(
-      `${NEWS_URL}news/v3/content/all/${this.categoryQuery}.json?&limit=40&api-key=${NEWS_API_KEY}`
+      `${NEWS_URL}news/v3/content/all/${this.categoryQuery}.json?limit=40&api-key=${NEWS_API_KEY}`
     );
 
     return response;
