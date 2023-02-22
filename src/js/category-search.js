@@ -36,7 +36,9 @@ async function getCategoryList() {
   categoriesDropdownList.innerHTML = markupCategories;
 }
 
-categoriesList.addEventListener('click', hendleOnBtn);
+if (document.title === 'NYTimes News') {
+  categoriesList.addEventListener('click', hendleOnBtn);
+}
 
 function hendleOnBtn(event) {
   if (event.target.nodeName !== 'BUTTON') {
@@ -47,6 +49,10 @@ function hendleOnBtn(event) {
 }
 
 async function hendleRequest(categories) {
+  // if (document.title !== 'NYTimes News') {
+  //   return;
+  // }
+
   const string = categories.toLowerCase().trim();
   const encodeURI = encodeURIComponent(string);
 
@@ -54,7 +60,7 @@ async function hendleRequest(categories) {
   try {
     const response = await news.searchNewsOnClick();
     const checkedResponse = await responseСheck(response);
-    console.log(checkedResponse);
+    // console.log(checkedResponse);
     renderCards(checkedResponse, 'categories');
   } catch (error) {
     console.log(error);
