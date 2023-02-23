@@ -7,15 +7,19 @@ import { createCardPop } from './js/cardMarkup';
 import { categoryCard } from './js/cardMarkup';
 import { updateMarkup } from './js/markupUtils';
 import { createCard } from './js/cardMarkup';
+import jsCalendar from './js/calendar';
+import { readLinksStyling } from './js/readLinksStyling';
+import categories from './js/categories';
 import NewsApiServes from './js/rest-api';
 import footerJs from './js/footer';
 import jsCalendar from './js/calendar';
 import { addEvtListOnReadMore } from './js/onReadLink';
-import pagination from './js/pagination';
+import { makeHiddenCategories } from './js/categories/isHidden';
 
 const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
 
+makeHiddenCategories();
 jsScriptHeader();
 if (document.title === 'NYTimes News') {
   jsCalendar();
@@ -24,8 +28,8 @@ if (document.title === 'NYTimes News') {
 
 footerJs();
 
-if (document.title !== 'NYTimes News: Read By Yourself') {
-  getCategoryList();
+if (document.title === 'NYTimes News') {
+  categories(news);
 }
 
 export default function renderCards(articles, identifier) {
@@ -52,7 +56,10 @@ export default function renderCards(articles, identifier) {
     .join('');
 
   updateMarkup(markup, newsBoxEl);
-  pagination();
   addEvtListOnReadMore(articles);
   getWeatherWidget();
+
+  if (document.title === 'NYTimes News') {
+    readLinksStyling();
+  }
 }

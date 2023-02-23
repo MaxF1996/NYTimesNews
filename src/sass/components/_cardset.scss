@@ -54,7 +54,6 @@ body {
   &:not(:last-child) {
     margin-bottom: 28px;
   }
-  &.is-read .overlay,
   &.is-read .readable {
     opacity: 1;
   }
@@ -67,16 +66,40 @@ body {
     margin: 10px 16px;
   }
 }
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  z-index: 3;
-  background-color: $mute-color-card;
-  pointer-events: none;
+
+.news-item.read-card {
+  position: relative;
+  .news-info {
+    // opacity: 0.65;
+    // background-color: rgba($color: #f4f4f4, $alpha: 0.5);
+  }
+  // .news-item__picture {
+  //   position: relative;
+  // }
+  .news-img {
+  }
+  .overlay {
+    background-color: rgba($color: #f4f4f4, $alpha: 0.35);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  .readable {
+    opacity: 1;
+    z-index: 3;
+  }
+  .news-chip {
+    z-index: 3;
+  }
+  .add-news-favorite {
+    z-index: 3;
+  }
+  .news-link {
+    z-index: 3;
+  }
 }
 
 .img-thumb {
@@ -88,7 +111,7 @@ body {
 }
 .news-img {
   width: 100%;
-  height: 100%;
+  height: 395px;
   object-fit: cover;
 }
 .readable {
@@ -122,14 +145,13 @@ body {
 }
 .favorite-icon {
   margin-left: 4px;
-  // position: relative;
 }
-.icon-empty-heart{
+.icon-empty-heart {
   stroke: $accent-color;
   fill: $primary-white-color;
 }
 .icon-heart {
-  display: none;
+  fill: $accent-color;
 }
 .add-news-favorite {
   position: absolute;
@@ -146,7 +168,6 @@ body {
   &.liked .icon-heart {
     display: block;
     fill: $accent-color;
-
   }
   &.liked .icon-empty-heart {
     display: none;
@@ -182,7 +203,7 @@ body {
     font-size: 32px;
   }
 }
-.disable-scroll{
+.disable-scroll {
   overflow-y: hidden;
 }
 

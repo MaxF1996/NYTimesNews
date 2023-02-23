@@ -1,6 +1,7 @@
 import Notiflix from 'notiflix';
 import NewsApiServes from './rest-api';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
+import { onError } from './renderPopularNews';
 
 const news = new NewsApiServes();
 let refs = {};
@@ -40,7 +41,7 @@ function getCurrentLocation() {
 function errorHandler(error) {
   if (error.code == error.PERMISSION_DENIED) {
     //   функция дефолтного запиту
-    markupWeatherCardDefault();
+    requestApiDefault();
     Notiflix.Notify.failure('Error: Access is denied!');
   }
 }
@@ -52,7 +53,7 @@ function findLocation(pos) {
   let userLongitude = crd.longitude;
   localStorage.setItem('USER_LATITUDE', userLatitude);
   localStorage.setItem('USER_LONGITUDE', userLongitude);
-  markupWeatherCard();
+  requestApiWeather();
 }
 
 news.requestWeatherApiDefault();
@@ -92,10 +93,29 @@ function getWeatherWidget() {
 }
 
 // Функція для дінамичного додавання даних з API до розмітки при наданні користувачем своїх координат
-async function markupWeatherCard() {
-  const data = await news.requestWeatherApi(latitude, longitude);
-  const geo = await news.requestGeoApi(latitude, longitude);
-  creatMarkupWeather();
+async function requestApiWeather() {
+  try {
+    const data = await news.requestWeatherApi(latitude, longitude);
+    const geo = await news.requestGeoApi(latitude, longitude);
+    creatMarkupWeather();
+    markupWeatherCard(data, geo);
+  } catch {
+    hendleErrors();
+  }
+}
+
+// Функція для дінамичного додавання даних з API до розмітки з дефолтним значенням (Київ)
+async function requestApiDefault() {
+  try {
+    const data = await news.requestWeatherApiDefault();
+    creatMarkupWeather();
+    markupWeatherCardDefault(data);
+  } catch {
+    hendleErrors();
+  }
+}
+
+function markupWeatherCard(data, geo) {
   refs.weatherTemp.textContent = Math.floor(data.main.temp);
   refs.weatherLocation.textContent = geo[0].name;
   refs.weatherCondition.textContent = data.weather[0].main;
@@ -111,11 +131,7 @@ async function markupWeatherCard() {
   );
 }
 
-// Функція для дінамичного додавання даних з API до розмітки з дефолтним значенням (Київ)
-async function markupWeatherCardDefault() {
-  const data = await news.requestWeatherApiDefault();
-  console.log(data);
-  creatMarkupWeather();
+function markupWeatherCardDefault(data) {
   refs.weatherTemp.textContent = Math.floor(data.main.temp);
   refs.weatherLocation.textContent = data.name;
   refs.weatherCondition.textContent = data.weather[0].main;
@@ -129,6 +145,10 @@ async function markupWeatherCardDefault() {
     'href',
     `https://www.wunderground.com/forecast/ua/Kyiv`
   );
+}
+
+function hendleErrors() {
+  Notiflix.Notify.info("sorry, but the weathe wasn't found");
 }
 
 export { getWeatherWidget };

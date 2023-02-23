@@ -1,9 +1,9 @@
 import renderCards from '../index';
 import NewsApiServes from './rest-api';
-const newsBoxEl = document.querySelector('.news-container');
-const news = new NewsApiServes();
-import { addEvtListOnReadMore } from './onReadLink';
+import { hidCategorySectionOnError } from './categories/isHidden';
 import { newsCardsFavChecker } from './fav/common';
+
+const news = new NewsApiServes();
 
 export default async function () {
   if (document.title !== 'NYTimes News') {
@@ -12,12 +12,15 @@ export default async function () {
   try {
     const response = await news.requestPopularNews();
     const articles = response.data.results;
+
     if (response.data.results == false) {
       throw new Error('No data');
+    } else if (response.status === 429) {
+      throw new Error();
     }
     renderCards(articles, 'populate');
-    // addEvtListOnReadMore(articles);
   } catch {
+    hidCategorySectionOnError();
     onError();
   }
 
