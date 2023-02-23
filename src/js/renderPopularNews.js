@@ -2,7 +2,6 @@ import renderCards from '../index';
 import NewsApiServes from './rest-api';
 const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
-import { addEvtListOnReadMore } from './onReadLink';
 import { newsCardsFavChecker } from './fav/common';
 
 export default async function () {
@@ -16,7 +15,6 @@ export default async function () {
       throw new Error('No data');
     }
     renderCards(articles, 'populate');
-    // addEvtListOnReadMore(articles);
   } catch {
     onError();
   }

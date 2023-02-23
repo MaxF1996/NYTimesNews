@@ -19,6 +19,9 @@ export default async function onSearchSubmit(e) {
       throw new Error('No data');
     }
     renderCards(articles, 'search');
+    addEvtListOnReadMore(articles);
+    const paginationEL = document.querySelector('.pagination');
+    paginationEL.innerHTML = '';
   } catch (error) {
     console.log(error);
     onError();

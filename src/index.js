@@ -18,6 +18,7 @@ import { makeHiddenCategories } from './js/categories/isHidden';
 
 const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
+
 makeHiddenCategories();
 jsScriptHeader();
 if (document.title === 'NYTimes News') {
