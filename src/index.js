@@ -11,6 +11,7 @@ import NewsApiServes from './js/rest-api';
 import footerJs from './js/footer';
 import jsCalendar from './js/calendar';
 import { addEvtListOnReadMore } from './js/onReadLink';
+import pagination from './js/pagination';
 
 const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
@@ -51,6 +52,7 @@ export default function renderCards(articles, identifier) {
     .join('');
 
   updateMarkup(markup, newsBoxEl);
+  pagination();
   addEvtListOnReadMore(articles);
   getWeatherWidget();
 }
