@@ -14,10 +14,11 @@ import NewsApiServes from './js/rest-api';
 import footerJs from './js/footer';
 import jsCalendar from './js/calendar';
 import { addEvtListOnReadMore } from './js/onReadLink';
+import { makeHiddenCategories } from './js/categories/isHidden';
 
 const newsBoxEl = document.querySelector('.news-container');
 const news = new NewsApiServes();
-
+makeHiddenCategories();
 jsScriptHeader();
 if (document.title === 'NYTimes News') {
   jsCalendar();

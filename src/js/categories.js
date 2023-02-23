@@ -3,6 +3,7 @@ import onDrop from './categories/onDrop';
 import onClikCategories from './categories/onClikCategories';
 import randomList from './categories/randomList';
 import { ref } from './categories/refCaregories';
+import { makeVisibleCategories } from './categories/isHidden';
 
 export default function categores(news) {
   const bindOnClikCategories = onClikCategories.bind(this, news);
@@ -28,7 +29,7 @@ function handlerCetegories(news) {
 
 async function getCategories(news) {
   const arrCategCommon = await news.categories;
-
+  makeVisibleCategories();
   return arrCategCommon.map(el => el.display_name);
 
   // localStorage.setItem('categList', arrCateg);

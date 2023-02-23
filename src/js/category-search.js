@@ -1,71 +1,71 @@
-import NewsApiServes from './rest-api';
-import renderCards from '../index';
+// import NewsApiServes from './rest-api';
+// import renderCards from '../index';
 
-const news = new NewsApiServes();
+// const news = new NewsApiServes();
 
-const categoriesList = document.querySelector('.filter-section__container');
-const categoriesDropdownList = document.querySelector(
-  '.categories-dropdown-list-js'
-);
-const othersDropdownList = document.querySelector('.others-dropdown-list-js');
+// const categoriesList = document.querySelector('.filter-section__container');
+// const categoriesDropdownList = document.querySelector(
+//   '.categories-dropdown-list-js'
+// );
+// const othersDropdownList = document.querySelector('.others-dropdown-list-js');
 
-async function getCategoryList() {
-  if (document.title !== 'NYTimes News') {
-    return;
-  }
-  const response = await news.requestListCategories();
+// async function getCategoryList() {
+//   if (document.title !== 'NYTimes News') {
+//     return;
+//   }
+//   const response = await news.requestListCategories();
 
-  const markupOthers = response.data.results
-    .map((arr, index) => {
-      if (index > 5) {
-        return `<li class="dropdown__item">
-            <button class="dropdown__category-btn category__btn">${arr.display_name}</button>
-          </li>`;
-      }
-    })
-    .join('');
-  othersDropdownList.innerHTML = markupOthers;
+//   const markupOthers = response.data.results
+//     .map((arr, index) => {
+//       if (index > 5) {
+//         return `<li class="dropdown__item">
+//             <button class="dropdown__category-btn category__btn">${arr.display_name}</button>
+//           </li>`;
+//       }
+//     })
+//     .join('');
+//   othersDropdownList.innerHTML = markupOthers;
 
-  const markupCategories = response.data.results
-    .map(
-      arr => `<li class="dropdown__item">
-                            <button class="dropdown__category-btn category__btn">${arr.display_name}</button>
-                        </li>`
-    )
-    .join('');
-  categoriesDropdownList.innerHTML = markupCategories;
-}
+//   const markupCategories = response.data.results
+//     .map(
+//       arr => `<li class="dropdown__item">
+//                             <button class="dropdown__category-btn category__btn">${arr.display_name}</button>
+//                         </li>`
+//     )
+//     .join('');
+//   categoriesDropdownList.innerHTML = markupCategories;
+// }
 
-categoriesList.addEventListener('click', hendleOnBtn);
+// categoriesList.addEventListener('click', hendleOnBtn);
 
-function hendleOnBtn(event) {
-  if (event.target.nodeName !== 'BUTTON') {
-    return;
-  }
-  const categories = event.target.innerHTML;
-  hendleRequest(categories);
-}
+// function hendleOnBtn(event) {
+//   if (event.target.nodeName !== 'BUTTON') {
+//     return;
+//   }
+//   const categories = event.target.innerHTML;
+//   hendleRequest(categories);
+// }
 
-async function hendleRequest(categories) {
-  const string = categories.toLowerCase().trim();
-  const encodeURI = encodeURIComponent(string);
+// async function hendleRequest(categories) {
+//   const string = categories.toLowerCase().trim();
+//   const encodeURI = encodeURIComponent(string);
 
-  news.category = encodeURI;
-  try {
-    const response = await news.searchNewsOnClick();
-    const checkedResponse = await responseСheck(response);
-    console.log(checkedResponse);
-    renderCards(checkedResponse, 'categories');
-  } catch (error) {
-    console.log(error);
-  }
-}
+//   news.category = encodeURI;
+//   try {
+//     const response = await news.searchNewsOnClick();
+//     const checkedResponse = await responseСheck(response);
+//     console.log(checkedResponse);
+//     renderCards(checkedResponse, 'categories');
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
-function responseСheck(response) {
-  if (response.data.results == false) {
-    throw new Error();
-  }
-  return response.data.results;
-}
+// function responseСheck(response) {
+//   if (response.data.results == false) {
+//     throw new Error();
+//   }
+//   return response.data.results;
+// }
 
-export { getCategoryList };
+// export { getCategoryList };
