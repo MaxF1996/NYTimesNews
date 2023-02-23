@@ -147,7 +147,6 @@ export default function jsCalendar() {
 }
 function setStoredDay() {
   const allrenderedDayEls = document.querySelectorAll('.usual');
-  console.log('    allrenderedDayEls :>> ', allrenderedDayEls);
   for (const day of allrenderedDayEls) {
     if (day.textContent === load('selectedDayKey')) {
       day.classList.add('selected__day');

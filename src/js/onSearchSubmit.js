@@ -20,7 +20,10 @@ export default async function onSearchSubmit(e) {
       throw new Error();
     }
     renderCards(articles, 'search');
-  } catch {
+    const paginationEL = document.querySelector('.pagination');
+    paginationEL.innerHTML = '';
+  } catch (error) {
+    console.log(error);
     hidCategorySectionOnError();
     onError();
   }

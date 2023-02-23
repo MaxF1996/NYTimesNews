@@ -13,7 +13,7 @@ export default async function () {
     const response = await news.requestPopularNews();
     const articles = response.data.results;
 
-    if (response.data.results == false) {
+    if (articles == false) {
       throw new Error('No data');
     } else if (response.status === 429) {
       throw new Error();

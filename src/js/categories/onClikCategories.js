@@ -1,6 +1,10 @@
 import { ref } from './refCaregories';
-import createArrayNews from '../cards/createArrayNews';
+import { hidCategorySectionOnError } from '../../js/categories/isHidden';
+import weatherTemplate from '../../template/weatherTemplate';
 import createCards from '../cards/createCards';
+import queueWeather from '../../js/countCard';
+import { getWeatherWidget } from '../../js/weather';
+import { onError } from '../renderPopularNews';
 
 export default async function onClikCategories(news, e) {
   // if pressed <svg> or <span>
@@ -14,20 +18,27 @@ export default async function onClikCategories(news, e) {
     ref.dropList.classList.add('visually-hidden'); //close .categories__list-drop
 
     ref.dropList.classList.remove('isActiveCateg');
-
-    const dataByCategory = await news.getCategory(btn.dataset.category);
-
-    const filterArr = createArrayNews(dataByCategory);
-
-    console.log(filterArr);
-
-    // const strInj = createCards(filterArr, ref.cardsList);
+    try {
+      const response = await news.getCategory(btn.dataset.category);
+      if (response.data.results == false) {
+        throw new Error('No data');
+      } else if (response.status === 429) {
+        throw new Error();
+      }
+      // const filterArr = createArrayNews(dataByCategory);
+      const queueWeat = queueWeather();
+      const strInj = response.data.results
+        .map((el, i) => (i === queueWeat ? weatherTemplate() : createCards(el)))
+        .join('');
+      // const strInj =  createCards(dataByCategory);
+      document.querySelector('.news-container').innerHTML = strInj;
+      getWeatherWidget();
+    } catch {
+      hidCategorySectionOnError();
+      onError();
+    }
   }
-  // else {
-  //   document.querySelector('.isActiveCateg')?.classList.remove('isActiveCateg');
-  //   btn.parentNode.classList.toggle('isActiveCateg');
-  //   return;
-  // }
+
   document.querySelector('.isActiveCateg')?.classList.remove('isActiveCateg');
 
   btn.parentNode.classList.add('isActiveCateg');
