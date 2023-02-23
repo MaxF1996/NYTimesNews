@@ -5,6 +5,9 @@ import createCards from '../cards/createCards';
 import queueWeather from '../../js/countCard';
 import { getWeatherWidget } from '../../js/weather';
 import { onError } from '../renderPopularNews';
+import createArrayNews from '../cards/createArrayNews';
+import createCards from '../cards/createCards';
+
 
 export default async function onClikCategories(news, e) {
   // if pressed <svg> or <span>
@@ -18,6 +21,7 @@ export default async function onClikCategories(news, e) {
     ref.dropList.classList.add('visually-hidden'); //close .categories__list-drop
 
     ref.dropList.classList.remove('isActiveCateg');
+
     try {
       const response = await news.getCategory(btn.dataset.category);
       if (response.data.results == false) {
@@ -37,8 +41,13 @@ export default async function onClikCategories(news, e) {
       hidCategorySectionOnError();
       onError();
     }
-  }
 
+  }
+  // else {
+  //   document.querySelector('.isActiveCateg')?.classList.remove('isActiveCateg');
+  //   btn.parentNode.classList.toggle('isActiveCateg');
+  //   return;
+  // }
   document.querySelector('.isActiveCateg')?.classList.remove('isActiveCateg');
 
   btn.parentNode.classList.add('isActiveCateg');
