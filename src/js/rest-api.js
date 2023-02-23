@@ -1,6 +1,6 @@
 const axios = require('axios').default;
 const NEWS_URL = 'https://api.nytimes.com/svc/';
-const NEWS_API_KEY = '58DF9bTBBQf2RU8WY5JE6TkVJf8iLJ4A';
+const NEWS_API_KEY = 'xioBUOy2utwoIp3nFtYp70R2qf3VItvB';
 const WEATHER_URL = 'https://api.openweathermap.org/';
 const WEATHER_API_KEY = '26ee5cfba4c9a8162c8c1ca031ae1bc4';
 
