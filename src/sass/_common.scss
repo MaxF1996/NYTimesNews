@@ -48,3 +48,32 @@ body {
   clip-path: inset(50%);
   margin: -1px;
 }
+
+
+//+++++++++++++++++++++++++++++++
+html {
+	/* Растягиваем документ на всю высоту окна */
+	height: 100%;
+ }
+ 
+ body {
+	position: relative;
+	margin: 0;
+	// color: #fff;
+	/* Растягиваем body по высоте html */
+	min-height: 100%;
+ }
+ 
+ 
+ main {
+	 /* Выставляем отступ с высотой footer по умолчанию */
+	padding-bottom: 30px;
+	
+ }
+ 
+ footer {
+	/* Позиционируем footer внизу main */
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+ }
